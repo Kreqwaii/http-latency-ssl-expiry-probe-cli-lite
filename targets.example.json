@@ -1,0 +1,35 @@
+{
+  "defaults": {
+    "samples": 3,
+    "timeout": 5.0,
+    "warn_p95_ms": 1000.0,
+    "ssl_warn_days": 14,
+    "ssl_crit_days": 3
+  },
+  "targets": [
+    {
+      "name": "Public API Health",
+      "url": "https://api.example.com/health",
+      "method": "GET",
+      "expected_status": [200, 204],
+      "keyword": "\"status\":\"ok\"",
+      "warn_p95_ms": 500
+    },
+    {
+      "name": "Marketing Landing Page",
+      "url": "https://www.example.com/",
+      "method": "GET",
+      "expected_status": 200,
+      "keyword": "Example Domain",
+      "ssl_warn_days": 21
+    },
+    {
+      "name": "Internal Webhook Receiver",
+      "url": "http://localhost:8080/readyz",
+      "method": "GET",
+      "expected_status": 200,
+      "samples": 5,
+      "check_ssl": false
+    }
+  ]
+}
